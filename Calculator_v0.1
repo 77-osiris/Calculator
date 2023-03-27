@@ -1,0 +1,103 @@
+import math
+
+wrong = "Invalid input"
+
+
+def addition(x, y):
+    return x + y
+
+
+def subtract(x, y):
+    return x - y
+
+
+def multiply(x, y):
+    return x * y
+
+
+def division(x, y):
+    return x / y
+
+
+def power(x, y):
+    return x ** y
+
+
+def squareroot(x):
+    return math.sqrt(x)
+
+
+def remain(x, y):
+    return x % y
+
+
+class Calculator:
+    def __init__(self):
+        pass
+
+
+def collectnum1():
+    num1 = float(input("Please enter a number: "))
+    return num1
+
+
+def collectnum2():
+    num2 = float(input("Please enter another number: "))
+    return num2
+
+
+def collectoperator():
+    operation = input("Please enter the operator: ")
+    return operation
+
+
+def calculator():
+
+    try:
+        num1 = collectnum1()
+        operation = collectoperator()
+        if operation != "-" and operation != "+" and operation != "*" and operation != "**" and operation != "/" \
+            and operation != "%" and operation != "sqrt":
+            print(f"{wrong}. Please use a valid operator.")
+            calculator()
+
+        if operation != "sqrt":
+            num2 = collectnum2()
+
+        if operation == "+":
+            answer = addition(num1, num2)
+        elif operation == "-":
+            answer = subtract(num1, num2)
+        elif operation == "*":
+            answer = multiply(num1, num2)
+        elif operation == "**":
+            answer = power(num1, num2)
+        elif operation == "/":
+            answer = division(num1, num2)
+        elif operation == "%":
+            answer = remain(num1, num2)
+        elif operation == "sqrt":
+            answer = squareroot(num1)
+    except ValueError:
+        print(f"{wrong}. Please use a valid number.")
+        calculator()
+
+    print(f"{num1} {operation} {num2} = {answer}")
+    again()
+
+
+def again():
+    replay = input("Would you like to restart? y/n")
+    if replay.lower() == "y":
+        calculator()
+    elif replay.lower() == "n":
+        print("Thanks for using the calculator")
+        exit()
+    else:
+        print(f"{wrong}. Restarting the calculator")
+        calculator()
+
+
+calculator()
+
+
